@@ -58,6 +58,23 @@
   .dp-shots strong { display:block; font-weight:600; font-size:1.1rem; }
   .dp-shots small { display:block; color:var(--dp-muted); font-size:.92rem; line-height:1.45; margin-top:.2rem; }
 
+  .dp-menu { display:grid; grid-template-columns:minmax(0,1fr) auto; gap:3rem; align-items:center; }
+  .dp-menu h4 { font-size:clamp(1.6rem, 3.5vw, 2.2rem); line-height:1.15; font-weight:500; margin:0 0 1rem; text-wrap:balance; }
+  .dp-menu p { color:var(--dp-muted); margin:0 0 1.25rem; max-width:32rem; }
+  .dp-menu ol { margin:0; padding:0; list-style:none; counter-reset:step; max-width:32rem; }
+  .dp-menu li { counter-increment:step; display:grid; grid-template-columns:2rem 1fr; gap:.5rem; padding:.7rem 0; border-top:1px solid var(--dp-border); }
+  .dp-menu li::before { content:counter(step); color:var(--dp-accent); font-size:1.2rem; }
+  .dp-menu li strong { font-weight:600; }
+  .dp-menu li span { display:block; color:var(--dp-muted); font-size:.95rem; }
+  .dp-menu-phones { display:flex; gap:1.25rem; }
+  .dp-menu-phones .phone { width:13.5rem; }
+  .dp-menu-phones .phone + .phone { margin-top:2.5rem; }
+  @media (max-width: 900px) {
+    .dp-menu { grid-template-columns:1fr; }
+    .dp-menu-phones { justify-content:center; }
+    .dp-menu-phones .phone { width:min(13.5rem, 46%); }
+  }
+
   .dp-grid { display:grid; grid-template-columns:repeat(auto-fit, minmax(16rem, 1fr)); gap:1rem; }
   .dp-card { background:var(--dp-panel); border:1px solid var(--dp-border); border-radius:16px; padding:1.15rem 1.3rem; }
   .dp-card h4 { font-size:1.1rem; font-weight:600; margin:0 0 .3rem; }
@@ -100,6 +117,31 @@
         <img src="assets/dinner-party/02-scale.jpg" width="720" height="1565"
              alt="A chili recipe doubled from 6 to 12 servings. Each ingredient shows its new amount with the original amount underneath.">
       </figure>
+    </div>
+
+    <h3>Build a menu</h3>
+    <div class="dp-menu">
+      <div>
+        <h4>Plan the whole dinner, not just one dish.</h4>
+        <p>Pick dishes from your cookbook, say how many are coming, and Dinner Party does the rest.</p>
+        <ol>
+          <li><div><strong>Lay out the courses</strong><span>Starter, main, side, dessert and drinks, or switch to brunch, cookout or holiday names.</span></div></li>
+          <li><div><strong>Set the guests</strong><span>Every dish scales to match. Counted dishes show how many each guest gets.</span></div></li>
+          <li><div><strong>Pair a side or a drink</strong><span>Serve the chili with lemonade, and it shows on the menu.</span></div></li>
+          <li><div><strong>Shop once</strong><span>One combined shopping list for the whole menu, sorted by aisle.</span></div></li>
+          <li><div><strong>Cook and share</strong><span>Get suggested start times so dishes finish together, and share a menu card.</span></div></li>
+        </ol>
+      </div>
+      <div class="dp-menu-phones">
+        <figure class="phone">
+          <img loading="lazy" src="assets/dinner-party/08-courses.jpg" width="720" height="1565"
+               alt="A menu with chili served with lemonade as the main, and cornbread and coleslaw as sides, each scaled for 8 guests.">
+        </figure>
+        <figure class="phone">
+          <img loading="lazy" src="assets/dinner-party/09-pair.jpg" width="720" height="1565"
+               alt="The Serve with a drink screen for chili, with lemonade ticked.">
+        </figure>
+      </div>
     </div>
 
     <h3>A look inside</h3>
