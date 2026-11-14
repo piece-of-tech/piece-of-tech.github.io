@@ -4,7 +4,7 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>Piece of Tech</title>
-<meta name="description" content="Piece of Tech LLC builds apps.">
+<meta name="description" content="Piece of Tech LLC builds apps. Dinner Party is a recipe scaler and cookbook for iPhone, coming soon.">
 <style>
   :root { --bg:#fbfaf7; --fg:#1d1d1b; --muted:#5f5e5a; --line:#e4e1d9; --accent:#2f6f4e; }
   @media (prefers-color-scheme: dark) {
@@ -13,26 +13,147 @@
   * { box-sizing: border-box; }
   body { margin:0; background:var(--bg); color:var(--fg);
          font:17px/1.6 -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif; }
-  main { max-width:36rem; margin:0 auto; padding:4rem 1rem 3rem; }
+  .wrap { max-width:36rem; margin:0 auto; padding:0 1rem; }
+  header.wrap { padding-top:4rem; padding-bottom:2.5rem; }
   h1 { font-size:2rem; line-height:1.2; margin:0 0 .5rem; }
-  p.lead { color:var(--muted); margin:0 0 2.5rem; }
-  h2 { font-size:.8rem; letter-spacing:.08em; text-transform:uppercase; color:var(--muted); margin:0 0 .75rem; }
-  ul { list-style:none; margin:0; padding:0; border-top:1px solid var(--line); }
-  li { padding:1rem 0; border-bottom:1px solid var(--line); display:flex; justify-content:space-between; gap:1rem; flex-wrap:wrap; }
+  p.lead { color:var(--muted); margin:0; }
   a { color:var(--accent); }
-  .name { font-weight:600; }
-  footer { margin-top:3rem; color:var(--muted); font-size:.85rem; }
+  footer.wrap { padding-top:2.5rem; padding-bottom:3rem; color:var(--muted); font-size:.85rem; }
+
+  /* Dinner Party showcase. Always the app's evening palette, to match the screenshots. */
+  .dp { --dp-bg:#1B1A1C; --dp-panel:#252326; --dp-border:#38353A; --dp-ink:#EBDDC3;
+        --dp-muted:#B9AC94; --dp-accent:#D6B98C; --dp-sage:#B7C4B5;
+        background:var(--dp-bg); color:var(--dp-ink);
+        font-family:Newsreader, "Iowan Old Style", "Palatino Linotype", Palatino, Georgia, serif;
+        font-size:18px; line-height:1.55; }
+  .dp-inner { max-width:64rem; margin:0 auto; padding:4.5rem 1.5rem; }
+  .dp a { color:var(--dp-ink); text-decoration-color:var(--dp-accent); text-decoration-thickness:2px; text-underline-offset:3px; }
+  .dp a:focus-visible { outline:2px solid var(--dp-accent); outline-offset:3px; border-radius:3px; }
+
+  .dp-hero { display:grid; grid-template-columns:minmax(0,1fr) auto; gap:3.5rem; align-items:center; }
+  .dp-brand { display:flex; align-items:center; gap:.9rem; margin:0 0 1.75rem; }
+  .dp-brand img { width:56px; height:56px; border-radius:13px; border:1px solid var(--dp-border); display:block; }
+  .dp-brand span { font-size:.8rem; letter-spacing:.28em; text-transform:uppercase; color:var(--dp-muted); }
+  .dp h2 { font-size:clamp(2.1rem, 5vw, 3.1rem); line-height:1.1; font-weight:500; letter-spacing:-.01em; margin:0 0 1.1rem; text-wrap:balance; }
+  .dp-dek { font-size:1.15rem; color:var(--dp-muted); margin:0 0 1.75rem; max-width:34rem; }
+  .dp-soon { display:inline-block; background:var(--dp-accent); color:var(--dp-bg); font-weight:600;
+             border-radius:14px; padding:.7rem 1.3rem; margin:0 0 1.5rem; }
+  .dp-facts { list-style:none; margin:0; padding:0; display:flex; flex-wrap:wrap; gap:.5rem; }
+  .dp-facts li { border:1px solid var(--dp-border); background:var(--dp-panel); border-radius:999px;
+                 padding:.3rem .85rem; font-size:.9rem; color:var(--dp-muted); }
+
+  .phone { margin:0; }
+  .phone img { display:block; width:100%; height:auto; aspect-ratio:720/1565;
+               border-radius:2.1rem; border:6px solid #0d0c0e; outline:1px solid var(--dp-border); background:#0d0c0e; }
+  .dp-hero .phone { width:17.5rem; }
+
+  .dp h3 { font-size:.8rem; letter-spacing:.2em; text-transform:uppercase; font-weight:500; color:var(--dp-muted);
+           margin:4.5rem 0 1.5rem; display:flex; align-items:center; gap:1rem; }
+  .dp h3::after { content:""; flex:1; height:1px; background:var(--dp-border); }
+
+  .dp-shots { display:flex; gap:1.75rem; overflow-x:auto; scroll-snap-type:x mandatory;
+              margin:0 -1.5rem; padding:.25rem 1.5rem 1.25rem; scrollbar-color:var(--dp-border) transparent; }
+  .dp-shots .phone { flex:0 0 15rem; scroll-snap-align:center; }
+  .dp-shots figcaption { margin-top:1rem; }
+  .dp-shots strong { display:block; font-weight:600; font-size:1.1rem; }
+  .dp-shots small { display:block; color:var(--dp-muted); font-size:.92rem; line-height:1.45; margin-top:.2rem; }
+
+  .dp-grid { display:grid; grid-template-columns:repeat(auto-fit, minmax(16rem, 1fr)); gap:1rem; }
+  .dp-card { background:var(--dp-panel); border:1px solid var(--dp-border); border-radius:16px; padding:1.15rem 1.3rem; }
+  .dp-card h4 { font-size:1.1rem; font-weight:600; margin:0 0 .3rem; }
+  .dp-card p { margin:0; color:var(--dp-muted); font-size:.95rem; }
+  .dp-note { color:var(--dp-sage); font-size:.95rem; margin:1.25rem 0 0; max-width:40rem; }
+  .dp-foot { margin:3.5rem 0 0; padding-top:1.5rem; border-top:1px solid var(--dp-border); color:var(--dp-muted); font-size:.95rem; }
+
+  @media (max-width: 760px) {
+    .dp-inner { padding:3.25rem 1.25rem; }
+    .dp-hero { grid-template-columns:1fr; gap:2.5rem; }
+    .dp-hero .phone { width:min(17rem, 78%); margin:0 auto; }
+    .dp-shots { margin:0 -1.25rem; padding-left:1.25rem; padding-right:1.25rem; gap:1.25rem; }
+    .dp-shots .phone { flex-basis:13.5rem; }
+    .dp h3 { margin-top:3.5rem; }
+  }
 </style>
 </head>
 <body>
-<main>
+<header class="wrap">
   <h1>Piece of Tech</h1>
   <p class="lead">Piece of Tech LLC builds apps.</p>
-  <h2>Apps</h2>
-  <ul>
-    <li><span class="name">Dinner Party</span> <a href="/dinner-party/">Privacy policy</a></li>
-  </ul>
-  <footer>Contact: <a href="mailto:hello@pieceoftech.app">hello@pieceoftech.app</a><br>&copy; 2026 Piece of Tech LLC</footer>
-</main>
+</header>
+
+<section class="dp" id="dinner-party" aria-labelledby="dp-title">
+  <div class="dp-inner">
+    <div class="dp-hero">
+      <div>
+        <p class="dp-brand"><img src="assets/dinner-party/icon.png" alt="" width="56" height="56"><span>Dinner Party</span></p>
+        <h2 id="dp-title">Cook for any number of people. Keep every recipe you love.</h2>
+        <p class="dp-dek">Dinner Party is a recipe scaler and cookbook that lives on your phone. Change the servings and every amount follows, in the fractions you actually use in a kitchen.</p>
+        <p class="dp-soon">Coming soon to iPhone</p>
+        <ul class="dp-facts">
+          <li>No account</li>
+          <li>No ads</li>
+          <li>No tracking</li>
+          <li>Works offline</li>
+        </ul>
+      </div>
+      <figure class="phone">
+        <img src="assets/dinner-party/02-scale.jpg" width="720" height="1565"
+             alt="A chili recipe doubled from 6 to 12 servings. Each ingredient shows its new amount with the original amount underneath.">
+      </figure>
+    </div>
+
+    <h3>A look inside</h3>
+    <div class="dp-shots" tabindex="0" role="group" aria-label="Dinner Party screenshots">
+      <figure class="phone">
+        <img loading="lazy" src="assets/dinner-party/01-cookbook.jpg" width="720" height="1565"
+             alt="The Cookbook screen with chapters for Breakfast, Lunch and Dinner and the recipes in each.">
+        <figcaption><strong>A cookbook that feels like one</strong><small>Chapters, search and a diet filter. Your recipes stay on your phone.</small></figcaption>
+      </figure>
+      <figure class="phone">
+        <img loading="lazy" src="assets/dinner-party/03-grams.jpg" width="720" height="1565"
+             alt="A pancake recipe shown in grams: 180 g all purpose flour, 12 g granulated sugar, 8 g baking powder.">
+        <figcaption><strong>Cups to grams</strong><small>Switch a whole recipe between cups and grams with one tap.</small></figcaption>
+      </figure>
+      <figure class="phone">
+        <img loading="lazy" src="assets/dinner-party/04-cook.jpg" width="720" height="1565"
+             alt="Cooking view on step 2 of 5, in large type, with a button to start a one minute timer and the ingredients for that step.">
+        <figcaption><strong>Step by step, with timers</strong><small>Big type, the ingredients for each step, and the screen stays on.</small></figcaption>
+      </figure>
+      <figure class="phone">
+        <img loading="lazy" src="assets/dinner-party/05-menu.jpg" width="720" height="1565"
+             alt="A menu called Saturday supper set for 8 guests, with chili scaled up from 6 servings.">
+        <figcaption><strong>Plan the whole meal</strong><small>Say how many are coming and every dish scales to match.</small></figcaption>
+      </figure>
+      <figure class="phone">
+        <img loading="lazy" src="assets/dinner-party/06-shopping.jpg" width="720" height="1565"
+             alt="A shopping list of 19 items for 8 guests, grouped by aisle, with two items ticked off.">
+        <figcaption><strong>One shopping list</strong><small>Every dish combined and sorted by aisle, with ticks.</small></figcaption>
+      </figure>
+      <figure class="phone">
+        <img loading="lazy" src="assets/dinner-party/07-swaps.jpg" width="720" height="1565"
+             alt="The swap screen with diets such as vegan and gluten free, common allergies, and a reminder to always read labels.">
+        <figcaption><strong>Swaps for diets and allergies</strong><small>Pick a diet or an allergy, then choose each replacement yourself.</small></figcaption>
+      </figure>
+    </div>
+
+    <h3>What it does</h3>
+    <div class="dp-grid">
+      <div class="dp-card"><h4>Scale anything</h4><p>Pick a serving count, or tap half, double or triple. Every amount updates, and you can see what it was underneath.</p></div>
+      <div class="dp-card"><h4>Kitchen fractions</h4><p>1 1/2 cups, not 1.5. Switch to decimals if you prefer.</p></div>
+      <div class="dp-card"><h4>I only have this much</h4><p>Tell it how much of one ingredient you have, and the rest of the recipe scales to match.</p></div>
+      <div class="dp-card"><h4>Bring your own recipes</h4><p>Paste or type a recipe, or bring in a PDF. Each line shows how it was read, so you can fix anything before it is saved.</p></div>
+      <div class="dp-card"><h4>Starter recipes</h4><p>A catalog of everyday basics. Add any to your cookbook and make it your own.</p></div>
+      <div class="dp-card"><h4>Menus and meal prep</h4><p>Plan one dinner or a week of meals. Each recipe is scaled to cover everyone.</p></div>
+      <div class="dp-card"><h4>Cooking order</h4><p>Pick when you want to eat and get a suggested start time for each dish.</p></div>
+      <div class="dp-card"><h4>Share and keep</h4><p>Share a menu card, or turn your recipes into a PDF cookbook with a cover and contents.</p></div>
+      <div class="dp-card"><h4>Light and evening</h4><p>A printed-cookbook look that follows your phone, in warm paper or charcoal.</p></div>
+    </div>
+    <p class="dp-note">Swaps cover the obvious ingredients. Always read labels and check for cross-contact, especially with allergies.</p>
+
+    <p class="dp-foot">Your recipes and settings are stored only on your phone. Read the <a href="/dinner-party/">privacy policy</a>, or write to <a href="mailto:support@pieceoftech.app">support@pieceoftech.app</a>.</p>
+  </div>
+</section>
+
+<footer class="wrap">Contact: <a href="mailto:hello@pieceoftech.app">hello@pieceoftech.app</a><br>&copy; 2026 Piece of Tech LLC</footer>
 </body>
 </html>
